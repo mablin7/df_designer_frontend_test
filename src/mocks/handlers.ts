@@ -3,7 +3,7 @@ import graphs from "./graphs"
 
 export const handlers = [
   rest.get("/api/graphs", (req, res, ctx) =>
-    res(ctx.json(graphs.map(( idx) => idx)))
+    res(ctx.json(graphs.map((idx) => idx)))
   ),
   rest.get("/api/graphs/:id", (req, res, ctx) => {
     const { id } = req.params

@@ -1,16 +1,23 @@
 import "./App.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Graph from "./components/Graph"
 import GraphDropdown from "./components/Dropdown"
 import CytoscapeComponent from "react-cytoscapejs"
+import { elements } from "./cytoscape.data/elements"
 
 function App() {
+  const [graphAmount, setGraphAmount] = useState([])
+  useEffect(() => {
+    fetch("/api/graphs")
+      .then((res) => res.json())
+      .then((res) => setGraphAmount(res))
+  }, []) //пока работает только на второй рендер, возможно проблема в MSW
   const [graph, setGraph] = useState([])
-  const handleClick = (value) => {
-    fetcher(value)
+  const handleClick = (buttonId) => {
+    fetchGraph(buttonId)
   }
-  const fetcher = (btns) => {
-    fetch(`/api/graphs/${btns - 1}`)
+  const fetchGraph = (buttonId) => {
+    fetch(`/api/graphs/${buttonId}`)
       .then((res) => res.json())
       .then((res) => {
         setGraph({ ...res })
@@ -18,23 +25,13 @@ function App() {
   }
   return (
     <div className="ui container">
-      <GraphDropdown handleClick={handleClick} />
+      <GraphDropdown graphAmount={graphAmount} handleClick={handleClick} />
       <br />
       <Graph graph={graph} />
-      <CytoscapeComponent
-        elements={[
-          { data: { id: "1", label: "Node 1" }, position: { x: 0, y: 0 } },
-          { data: { id: "2", label: "Node 2" }, position: { x: 150, y: 70 } },
-          {
-            data: {
-              source: "1",
-              target: "2",
-              label: "Edge from Node1 to Node2",
-            },
-          },
-        ]}
+      {/* <CytoscapeComponent
+        elements={elements}
         style={{ border: "1px solid black", width: "100%", height: "600px" }}
-      />
+      /> */}
     </div>
   )
 }
