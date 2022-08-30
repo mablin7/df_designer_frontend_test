@@ -5,7 +5,6 @@ function GraphDropdown({ handleClick, graphAmount }) {
   const clickHandler = (e) => {
     handleClick(e.target.innerText - 1)
   }
-  console.log(graphAmount)
   const dropdownItems = graphAmount?.map((graph) => {
     return (
       <Dropdown.Item key={graphAmount.indexOf(graph)} onClick={clickHandler}>

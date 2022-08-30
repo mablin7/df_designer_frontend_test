@@ -32,7 +32,12 @@
 ul {
   padding-left: 0px;
   display: grid;
+  grid-auto-flow:dense;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "a b c"
+    "a b c"
+    "a b c";
 }
 .dropdown-toggle,
 .dropdown-menu {
