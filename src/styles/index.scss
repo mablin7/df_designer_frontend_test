@@ -1,0 +1,43 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap");
+@import "./mixins.scss";
+@import "./variables.scss";
+
+:root {
+  font-size: 2rem;
+  padding: 2rem;
+}
+body {
+  font: $base-font;
+  color: $font-color;
+  font-weight: $bold;
+  background: $color4;
+}
+.graph {
+  @include flex;
+  justify-self: center;
+  margin: 10px;
+  padding: 5px;
+  border: 10px solid $color;
+  border-radius: 100px;
+  width: 300px;
+  height: 150px;
+}
+ul {
+  padding-left: 0px;
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "a b c"
+    "a b c"
+    "a b c";
+}
+.dropdown-toggle,
+.dropdown-menu {
+  width: 20vw;
+  color: $color3;
+}
+.dropdown {
+  @include flex;
+}

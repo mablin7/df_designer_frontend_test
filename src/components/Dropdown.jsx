@@ -1,14 +1,14 @@
 import Dropdown from "react-bootstrap/Dropdown"
 import DropdownButton from "react-bootstrap/DropdownButton"
 
-function GraphDropdown({ handleClick, graphAmount }) {
+function GraphDropdown({ handleClick, graphs }) {
   const clickHandler = (e) => {
     handleClick(e.target.innerText - 1)
   }
-  const dropdownItems = graphAmount?.map((graph) => {
+  const dropdownItems = graphs?.map((graph) => {
     return (
-      <Dropdown.Item key={graphAmount.indexOf(graph)} onClick={clickHandler}>
-        {graphAmount.indexOf(graph) + 1}
+      <Dropdown.Item key={graphs.indexOf(graph)} onClick={clickHandler}>
+        {graphs.indexOf(graph) + 1}
       </Dropdown.Item>
     )
   })

@@ -8,7 +8,7 @@ const Graph = ({ graph }) => {
         key={node.id}
         style={{ gridColumnStart: `${stylePicker(node.connection)}` }}
       >
-        {node.name}:{node.id}:{node.connection}
+        {node.name}
       </div>
     )
   })
