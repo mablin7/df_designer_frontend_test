@@ -14,7 +14,7 @@ function GraphDropdown({ handleClick, graphs }) {
   })
 
   return (
-    <DropdownButton id="dropdown-basic-button" title="GraphList">
+    <DropdownButton id="dropdown-basic-button" title="Graph List  ">
       {dropdownItems}
     </DropdownButton>
   )
