@@ -31,16 +31,9 @@ function App() {
 
   return (
     <div>
-      <GraphDropdown
-        className="start item"
-        graphs={graphs}
-        handleClick={handleClick}
-      />
+      <GraphDropdown graphs={graphs} handleClick={handleClick} />
       <br />
-      <ArcherContainer strokeColor="blue" strokeWidth="5">
-        <Graph graph={graph} />
-      </ArcherContainer>
-      {/* <Sandbox></Sandbox> */}
+      <Graph graph={graph} />
     </div>
   )
 }

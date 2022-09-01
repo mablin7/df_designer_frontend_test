@@ -1,5 +1,11 @@
 import { ArcherContainer, ArcherElement } from "react-archer"
-
+const relations = [
+  {
+    targetId: "element3",
+    targetAnchor: "left",
+    sourceAnchor: "right",
+  },
+]
 const rowStyle = {
   margin: "200px 0",
   display: "flex",
@@ -12,16 +18,7 @@ const Sandbox = () => {
     <div style={{ height: "500px", margin: "50px" }}>
       <ArcherContainer strokeColor="red" strokeWidth="5">
         <div style={rowStyle}>
-          <ArcherElement
-            id="element2"
-            relations={[
-              {
-                targetId: "element3",
-                targetAnchor: "left",
-                sourceAnchor: "right",
-              },
-            ]}
-          >
+          <ArcherElement id="element2" relations={relations}>
             <div style={boxStyle}>Element 2</div>
           </ArcherElement>
           <ArcherElement id="element3">

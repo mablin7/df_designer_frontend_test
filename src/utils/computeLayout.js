@@ -1,5 +1,7 @@
 import _ from "lodash"
 
+//TODO возможно стоить ограничиться полем toId => нужно упростить логику
+
 export const computeLayout = (graph) => {
   const { edges, nodes } = graph
   const from = _.map(edges, _.property("fromId"))
@@ -28,6 +30,5 @@ export const computeLayout = (graph) => {
         .filter((id) => (id ? id : null)),
     })),
   }
-  console.log(newGraph)
   return newGraph
 }
