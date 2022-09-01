@@ -8,7 +8,6 @@ export const computeLayout = (graph) => {
   const outgoing = Array.from(new Set(from.filter((e) => !to.includes(e))))
   const incoming = Array.from(new Set(to.filter((e) => !from.includes(e))))
   const newGraph = {
-    ...graph,
     nodes: nodes.map((node, idx) => ({
       ...node,
       connection: both.includes(idx)
@@ -18,7 +17,18 @@ export const computeLayout = (graph) => {
         : incoming.includes(idx)
         ? "incoming"
         : "none",
+      toId: edges
+        .map((edge) => {
+          if (edge.fromId == node.id) {
+            console.log(edge.toId)
+            return edge.toId
+          } else {
+            return ""
+          }
+        })
+        .filter((id) => (id ? id : null)),
     })),
   }
+  console.log(newGraph)
   return newGraph
 }
