@@ -1,10 +1,9 @@
 import "./styles/index.scss"
 import { useState, useEffect, useRef } from "react"
 import { computeLayout } from "./utils/computeLayout"
-import Graph from "./components/Graph"
+import GraphList from "./components/GraphList"
 import GraphDropdown from "./components/Dropdown"
-import { ArcherContainer, ArcherElement } from "react-archer"
-import Sandbox from "./components/Sandbox"
+
 function App() {
   const [graphs, setGraphs] = useState([])
   const [graph, setGraph] = useState([])
@@ -33,7 +32,7 @@ function App() {
     <div>
       <GraphDropdown graphs={graphs} handleClick={handleClick} />
       <br />
-      <Graph graph={graph} />
+      <GraphList graph={graph} />
     </div>
   )
 }
