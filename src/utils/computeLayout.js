@@ -20,7 +20,6 @@ export const computeLayout = (graph) => {
       toId: edges
         .map((edge) => {
           if (edge.fromId == node.id) {
-            console.log(edge.toId)
             return edge.toId
           } else {
             return ""
