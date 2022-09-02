@@ -1,8 +1,10 @@
+import React from "react"
 import "./styles/index.scss"
 import { useState, useEffect, createRef } from "react"
 import { computeLayout } from "./utils/computeLayout"
 import GraphList from "./components/GraphList"
 import GraphDropdown from "./components/Dropdown"
+
 function App() {
   const [graphs, setGraphs] = useState([])
   const [graph, setGraph] = useState([])

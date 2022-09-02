@@ -3,6 +3,11 @@ module.exports = {
   testEnvironment: "jsdom",
   transform: {
     "^.+\\.tsx?$": "ts-jest",
+    "^.+.jsx?$": "babel-jest",
+  },
+
+  moduleNameMapper: {
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
   },
   extensionsToTreatAsEsm: [".ts", ".tsx"],
   globals: {
@@ -10,4 +15,4 @@ module.exports = {
       useESM: true,
     },
   },
-};
+}
