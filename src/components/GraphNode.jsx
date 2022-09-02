@@ -1,24 +1,19 @@
 import { ArcherElement } from "react-archer"
 import { stylePicker } from "../utils/stylePicker"
 import { relationsMaker } from "../utils/relationsMaker"
+import { forwardRef } from "react"
 
-const GraphNode = ({ node }) => {
+import Node from "./Node"
+const GraphNode = forwardRef(({ node }, ref) => {
   return (
     <ArcherElement
       key={`🙈${Math.random()}🙈`}
       id={node.id}
       relations={relationsMaker(node.toId)}
     >
-      <div
-        className="graph"
-        key={node.id}
-        style={{ gridColumnStart: `${stylePicker(node.connection)}` }}
-        id={node.id}
-      >
-        {node.name}({node.id})
-      </div>
+      <Node ref={ref} node={node}></Node>
     </ArcherElement>
   )
-}
+})
 
 export default GraphNode

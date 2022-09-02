@@ -1,10 +1,12 @@
 import { ArcherContainer } from "react-archer"
 import GraphNode from "./GraphNode"
+import { forwardRef } from "react"
 
-const GraphList = ({ graph }) => {
+
+const GraphList = forwardRef(({ graph }, ref) => {
   const graphNodes = graph.nodes
     ? graph.nodes.map((node) => {
-        return <GraphNode key={node.id} node={node} />
+        return <GraphNode ref={ref} key={node.id} node={node} />
       })
     : ""
   return (
@@ -12,6 +14,6 @@ const GraphList = ({ graph }) => {
       <ul>{graphNodes}</ul>
     </ArcherContainer>
   )
-}
+})
 
 export default GraphList
