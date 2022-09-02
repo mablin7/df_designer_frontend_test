@@ -2,7 +2,6 @@ import { ArcherContainer } from "react-archer"
 import GraphNode from "./GraphNode"
 import { forwardRef } from "react"
 
-
 const GraphList = forwardRef(({ graph }, ref) => {
   const graphNodes = graph.nodes
     ? graph.nodes.map((node) => {

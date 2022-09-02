@@ -1,5 +1,4 @@
 import { ArcherElement } from "react-archer"
-import { stylePicker } from "../utils/stylePicker"
 import { relationsMaker } from "../utils/relationsMaker"
 import { forwardRef } from "react"
 

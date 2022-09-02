@@ -4,8 +4,7 @@ import { stylePicker } from "../utils/stylePicker"
 const Node = forwardRef(({ node }, ref) => {
   //   useDrag(ref)
   console.log(ref)
-    return (
-      
+  return (
     <div
       ref={ref}
       className="graph"
