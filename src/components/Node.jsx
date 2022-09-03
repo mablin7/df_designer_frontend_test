@@ -2,6 +2,7 @@ import React from "react"
 import { forwardRef } from "react"
 import { useDrag } from "../hooks/useDrag"
 import { stylePicker } from "../utils/stylePicker"
+
 const Node = forwardRef(({ node }, ref) => {
   // useDrag(ref)
   // console.log(ref)
