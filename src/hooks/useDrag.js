@@ -24,7 +24,6 @@ export const useDrag = (el) => {
         { once: true }
       )
     }
-    console.log(el)
     el.current.addEventListener("mousedown", handleMouseDown)
 
     return () => {

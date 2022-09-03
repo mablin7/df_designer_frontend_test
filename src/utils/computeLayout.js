@@ -4,11 +4,12 @@ import _ from "lodash"
 
 export const computeLayout = (graph) => {
   const { edges, nodes } = graph
-  const from = _.map(edges, _.property("fromId"))
-  const to = _.map(edges, _.property("toId"))
-  const both = Array.from(new Set(from.filter((e) => to.includes(e))))
-  const outgoing = Array.from(new Set(from.filter((e) => !to.includes(e))))
-  const incoming = Array.from(new Set(to.filter((e) => !from.includes(e))))
+  const from = _.map(edges, _.property("fromId")) //получаем массив со всеми значениями fromId
+  const to = _.map(edges, _.property("toId")) //аналогично с toId
+
+  const both = Array.from(new Set(from.filter((e) => to.includes(e))))       //получаем 3 массива, в которых 
+  const outgoing = Array.from(new Set(from.filter((e) => !to.includes(e))))  //будут храниться айди нод 
+  const incoming = Array.from(new Set(to.filter((e) => !from.includes(e))))  //каждый массив для отдельного столбца
   const newGraph = {
     nodes: nodes.map((node, idx) => ({
       ...node,
@@ -21,7 +22,7 @@ export const computeLayout = (graph) => {
         : "none",
       toId: edges
         .map((edge) => {
-          if (edge.fromId == node.id) {
+          if (edge.fromId == node.id) {         //возвращаем объект с новыми свойствами (тип связи и направление)
             return edge.toId
           } else {
             return ""

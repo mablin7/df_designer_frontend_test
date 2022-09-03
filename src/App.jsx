@@ -2,7 +2,7 @@ import React from "react"
 import "./styles/index.scss"
 import { useState, useEffect, createRef } from "react"
 import { computeLayout } from "./utils/computeLayout"
-import GraphList from "./components/GraphList"
+import GraphLayout from "./components/GraphLayout"
 import GraphDropdown from "./components/Dropdown"
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
     fetch(`/api/graphs/${buttonId}`)
       .then((res) => res.json())
       .then((res) => {
-        setGraph({ ...computeLayout(res) })
+        setGraph({ ...computeLayout(res) }) //прежде чем положить данные в стейт, преобразуем их в удобный вид
       })
   }
 
@@ -33,7 +33,7 @@ function App() {
     <div>
       <GraphDropdown graphs={graphs} handleClick={handleClick} />
       <br />
-      <GraphList ref={ref} graph={graph} />
+      <GraphLayout ref={ref} graph={graph} />
     </div>
   )
 }

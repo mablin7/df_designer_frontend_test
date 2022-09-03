@@ -9,7 +9,7 @@ const GraphNode = forwardRef(({ node }, ref) => {
     <ArcherElement
       key={`🙈${Math.random()}🙈`}
       id={node.id}
-      relations={relationsMaker(node.toId)}
+      relations={relationsMaker(node.toId)} 
     >
       <Node ref={ref} node={node}></Node>
     </ArcherElement>

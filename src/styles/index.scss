@@ -3,6 +3,10 @@
 @import "./mixins.scss";
 @import "./variables.scss";
 
+// к сожалению не успеваю привести все к удовлетворяющему меня виду
+// можете взглянуть как я  работаю со стилями в этом проекте: https://github.com/klmntv/kvando.weatherApp
+// src/styles и src/components (использую миксины, модульный scss и переменные)
+
 :root {
   font-size: 1rem;
   padding: 2rem;
@@ -45,7 +49,7 @@ ul {
 .draggable {
   cursor: move;
   position: absolute;
-  height: 150px;
+  height: 150px;                 //временные стили для тестирования useDrag
   width: 150px;
   border: 10px solid red;
 }
