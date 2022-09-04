@@ -23,10 +23,10 @@ import DropdownButton from "react-bootstrap/DropdownButton"
 */
 
 function GraphDropdown({ handleClick, graphs }) {
-  const dropdownItems = graphs?.map((_, index) => {
+  const dropdownItems = graphs?.map((id, index) => {
     return (
       <Dropdown.Item key={index} onClick={() => handleClick(index)}>
-        Graph with id: {index}
+        {index + 1}
       </Dropdown.Item>
     )
   })
