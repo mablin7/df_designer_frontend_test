@@ -1,4 +1,5 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+@import "semantic-ui-css/semantic.min.css";
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap");
 @import "./mixins.scss";
 @import "./variables.scss";
@@ -38,6 +39,9 @@ ul {
     "a b c"
     "a b c";
 }
+.flex {
+  @include flex;
+}
 .dropdown-toggle,
 .dropdown-menu {
   width: 20vw;
@@ -45,6 +49,12 @@ ul {
 }
 .dropdown {
   @include flex;
+}
+.ui.button {
+  padding: 11px 12px !important;
+  margin-left: 20px !important;
+  background-color: #0e6efd !important;
+  color: $color3 !important;
 }
 .draggable {
   cursor: move;

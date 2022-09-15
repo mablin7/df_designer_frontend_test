@@ -32,7 +32,7 @@ function GraphDropdown({ handleClick, graphs }) {
   })
 
   return (
-    <DropdownButton id="dropdown-basic-button" title="Graph List ">
+    <DropdownButton id="dropdown-basic-button" title="Graph List" >
       {dropdownItems}
     </DropdownButton>
   )

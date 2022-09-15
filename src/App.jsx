@@ -4,10 +4,12 @@ import { useState, useEffect, createRef } from "react"
 import { computeLayout } from "./utils/computeLayout"
 import GraphLayout from "./components/GraphLayout"
 import GraphDropdown from "./components/Dropdown"
+import UntangleButton from "./components/UntangleButton"
 
 function App() {
   const [graphList, setGraphList] = useState([])
   const [graph, setGraph] = useState([])
+  const [rawGraph, setRawGraph] = useState([])
 
   useEffect(() => {
     // без setTimeout useEffect видимо срабатывает раньше MSW и запрос идет на localhost:3000
@@ -23,6 +25,7 @@ function App() {
     fetch(`/api/graphs/${graphId}`)
       .then((res) => res.json())
       .then((res) => {
+        setRawGraph(res)
         setGraph({ ...computeLayout(res) }) //прежде чем положить данные в стейт, преобразуем их в удобный вид
       })
   }
@@ -30,15 +33,21 @@ function App() {
   const handleClick = (graphId) => {
     fetchGraphById(graphId)
   }
+  const handleButton = () => {
+    console.log("clicked")
+  }
 
   const ref = createRef()
-
+  console.log(graph)
   return (
-    <div>
-      <GraphDropdown graphs={graphList} handleClick={handleClick} />
+    <>
+      <div className="flex">
+        <GraphDropdown graphs={graphList} handleClick={handleClick} />
+        <UntangleButton handleButton={handleButton} />
+      </div>
       <br />
       <GraphLayout ref={ref} graph={graph} />
-    </div>
+    </>
   )
 }
 
