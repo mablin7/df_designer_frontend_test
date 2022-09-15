@@ -31,7 +31,7 @@ const Node = forwardRef(({ node }, ref) => {
 
   //P.S. предложенный им способ не сработал
   // а хук рабочий!
-
+console.log(node.position)
   return (
     <div
       ref={ref}

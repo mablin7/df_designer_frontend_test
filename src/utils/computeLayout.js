@@ -19,7 +19,8 @@ export const computeLayout = (graph) => {
       ? "incoming"
       : "none"
   }
-
+//TODO:поработать над оптимизацией
+  //функция, разделяющая ребра на два массива(массив с ребрами, находящимися между 1ым и 2ым столбцом и между 2ым и 3им)
   const edgesBetweenColumns = (column, edges) => {
     {
       return edges
@@ -31,7 +32,7 @@ export const computeLayout = (graph) => {
         .filter((edge) => edge)
     }
   }
-
+// функция, преобразующая координаты ребер в удобный для гридов вид
   const edgesWithGridCoords = (edges, column1, column2) => {
     // console.log(column1, column2)
 
@@ -53,9 +54,10 @@ export const computeLayout = (graph) => {
     for (let i = 0; i < gridCoords.length; i++) {
       gridCoords[i]?.push(...endCoord[i])
     }
-    console.log(gridCoords)
+    // console.log(gridCoords)
     return gridCoords
   }
+  //счетчик пересечений ребер
   const crossCounter = (array) => {
     let counter = 0
     let arr = array.slice()
@@ -69,10 +71,10 @@ export const computeLayout = (graph) => {
       }
       arr.shift()
     }
-    console.log(counter)
+    // console.log(counter)
     return counter
   }
-
+//функция создает все возможные варианты расположения нод в столбце
   const permutator = (arr) => {
     if (arr.length <= 2) return arr.length === 2 ? [arr, [arr[1], arr[0]]] : arr
     return arr.reduce(
@@ -86,6 +88,7 @@ export const computeLayout = (graph) => {
       []
     )
   }
+  //функция готовящая новый layout
   const untangleColumn = (column, column2) => {
     if (edges.length > 8) {
       const edgesFromOneColumn = edgesBetweenColumns(column, edges)
@@ -100,22 +103,29 @@ export const computeLayout = (graph) => {
       edgesLayouts.forEach((e) => {
         score.push(crossCounter(e))
       })
-      console.log(score)
+      // console.log(score)
       const bestScore = Math.min(...score)
-      console.log(bestScore)
+      // console.log(bestScore)
       const finalScore = score.indexOf(bestScore)
-      console.log(finalScore)
+      // console.log(finalScore)
       const finalLayout = layouts[finalScore]
-      console.log(finalLayout)
+      // console.log(finalLayout)
       return finalLayout
     } else ""
   }
-
+  const finalLayout = untangleColumn(outgoing, both)
   return {
     nodes: nodes.map((node, idx) => ({
       ...node,
       connection: getNodeTypeByNodeId(idx),
-      untangled1: untangleColumn(outgoing, both),
+      position:
+        idx == finalLayout[0]
+          ? finalLayout.indexOf(finalLayout[0])
+          : idx == finalLayout[1]
+          ? finalLayout.indexOf(finalLayout[1])
+          : idx == finalLayout[2]
+          ? finalLayout.indexOf(finalLayout[2])
+          : "",
       toId: edges
         .map((edge) => (edge.fromId == node.id ? edge.toId : ""))
         .filter((id) => id)
