@@ -21,17 +21,20 @@ export const computeLayout = (graph) => {
   }
 
   const edgesBetweenColumns = (column, edges) => {
-    return edges
-      .map((edge) => {
-        if (column.includes(edge.fromId)) {
-          return edge
-        }
-      })
-      .filter((edge) => edge)
+    {
+      return edges
+        .map((edge) => {
+          if (column.includes(edge.fromId)) {
+            return edge
+          }
+        })
+        .filter((edge) => edge)
+    }
   }
 
   const edgesWithGridCoords = (edges, column1, column2) => {
-    console.log(column1, column2)
+    // console.log(column1, column2)
+
     const gridCoords = edges.map((edge) => {
       for (let i = 0; i < column1.length; i++) {
         if (edge.fromId === column1[i]) {
@@ -48,7 +51,7 @@ export const computeLayout = (graph) => {
     })
 
     for (let i = 0; i < gridCoords.length; i++) {
-      gridCoords[i].push(...endCoord[i])
+      gridCoords[i]?.push(...endCoord[i])
     }
     console.log(gridCoords)
     return gridCoords
@@ -84,36 +87,38 @@ export const computeLayout = (graph) => {
     )
   }
   const untangleColumn = (column, column2) => {
-    const edgesFromOneColumn = edgesBetweenColumns(column, edges)
-    const edgesLayouts = []
-    const layouts = permutator(column)
-    layouts.forEach((layout) => {
-      edgesLayouts.push(
-        edgesWithGridCoords(edgesFromOneColumn, layout, column2).sort()
-      )
-    })
-    const score = []
-    edgesLayouts.forEach((e) => {
-      score.push(crossCounter(e))
-    })
-    console.log(score)
-    const bestScore = Math.min(...score)
-    console.log(bestScore)
-    const finalScore = score.indexOf(bestScore) === 0 ? 1 : 1
-    console.log(finalScore)
-    const finalLayout = layouts[finalScore]
-    return finalLayout
+    if (edges.length > 8) {
+      const edgesFromOneColumn = edgesBetweenColumns(column, edges)
+      const edgesLayouts = []
+      const layouts = permutator(column)
+      layouts.forEach((layout) => {
+        edgesLayouts.push(
+          edgesWithGridCoords(edgesFromOneColumn, layout, column2).sort()
+        )
+      })
+      const score = []
+      edgesLayouts.forEach((e) => {
+        score.push(crossCounter(e))
+      })
+      console.log(score)
+      const bestScore = Math.min(...score)
+      console.log(bestScore)
+      const finalScore = score.indexOf(bestScore)
+      console.log(finalScore)
+      const finalLayout = layouts[finalScore]
+      console.log(finalLayout)
+      return finalLayout
+    } else ""
   }
 
   return {
     nodes: nodes.map((node, idx) => ({
       ...node,
       connection: getNodeTypeByNodeId(idx),
+      untangled1: untangleColumn(outgoing, both),
       toId: edges
         .map((edge) => (edge.fromId == node.id ? edge.toId : ""))
         .filter((id) => id)
-    })),
-    // untangled1: untangleColumn(outgoing, both),
-    untangled2: untangleColumn(both, incoming)
+    }))
   }
 }

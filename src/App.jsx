@@ -34,11 +34,11 @@ function App() {
     fetchGraphById(graphId)
   }
   const handleButton = () => {
-    console.log("clicked")
+    // console.log(nodes)
   }
 
   const ref = createRef()
-  console.log(graph)
+  // console.log(graph)
   return (
     <>
       <div className="flex">
