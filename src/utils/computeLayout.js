@@ -19,7 +19,7 @@ export const computeLayout = (graph) => {
       ? "incoming"
       : "none"
   }
-//TODO:поработать над оптимизацией
+  //TODO:поработать над оптимизацией
   //функция, разделяющая ребра на два массива(массив с ребрами, находящимися между 1ым и 2ым столбцом и между 2ым и 3им)
   const edgesBetweenColumns = (column, edges) => {
     {
@@ -32,7 +32,7 @@ export const computeLayout = (graph) => {
         .filter((edge) => edge)
     }
   }
-// функция, преобразующая координаты ребер в удобный для гридов вид
+  // функция, преобразующая координаты ребер в удобный для гридов вид
   const edgesWithGridCoords = (edges, column1, column2) => {
     // console.log(column1, column2)
 
@@ -74,7 +74,7 @@ export const computeLayout = (graph) => {
     // console.log(counter)
     return counter
   }
-//функция создает все возможные варианты расположения нод в столбце
+  //функция создает все возможные варианты расположения нод в столбце
   const permutator = (arr) => {
     if (arr.length <= 2) return arr.length === 2 ? [arr, [arr[1], arr[0]]] : arr
     return arr.reduce(
@@ -91,6 +91,7 @@ export const computeLayout = (graph) => {
   //функция готовящая новый layout
   const untangleColumn = (column, column2) => {
     if (edges.length > 8) {
+      //🩼
       const edgesFromOneColumn = edgesBetweenColumns(column, edges)
       const edgesLayouts = []
       const layouts = permutator(column)
@@ -118,14 +119,15 @@ export const computeLayout = (graph) => {
     nodes: nodes.map((node, idx) => ({
       ...node,
       connection: getNodeTypeByNodeId(idx),
-      position:
-        idx == finalLayout[0]
+      position: finalLayout //🩼
+        ? idx == finalLayout[0]
           ? finalLayout.indexOf(finalLayout[0])
           : idx == finalLayout[1]
           ? finalLayout.indexOf(finalLayout[1])
           : idx == finalLayout[2]
           ? finalLayout.indexOf(finalLayout[2])
-          : "",
+          : ""
+        : "",
       toId: edges
         .map((edge) => (edge.fromId == node.id ? edge.toId : ""))
         .filter((id) => id)
